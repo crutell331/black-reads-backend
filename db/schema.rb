@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_28_192253) do
+ActiveRecord::Schema.define(version: 2020_09_28_194208) do
 
   create_table "authors", force: :cascade do |t|
     t.string "firstname"
@@ -54,12 +54,19 @@ ActiveRecord::Schema.define(version: 2020_09_28_192253) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "sub_genres", force: :cascade do |t|
-    t.string "name"
+  create_table "sub_genre_categories", force: :cascade do |t|
+    t.integer "sub_genre_id", null: false
     t.integer "genre_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["genre_id"], name: "index_sub_genres_on_genre_id"
+    t.index ["genre_id"], name: "index_sub_genre_categories_on_genre_id"
+    t.index ["sub_genre_id"], name: "index_sub_genre_categories_on_sub_genre_id"
+  end
+
+  create_table "sub_genres", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "themes", force: :cascade do |t|
@@ -79,5 +86,6 @@ ActiveRecord::Schema.define(version: 2020_09_28_192253) do
   add_foreign_key "book_themes", "books"
   add_foreign_key "book_themes", "themes"
   add_foreign_key "books", "authors"
-  add_foreign_key "sub_genres", "genres"
+  add_foreign_key "sub_genre_categories", "genres"
+  add_foreign_key "sub_genre_categories", "sub_genres"
 end

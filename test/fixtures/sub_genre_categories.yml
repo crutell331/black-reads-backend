@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sub_genre: one
+  genre: one
+
+two:
+  sub_genre: two
+  genre: two
