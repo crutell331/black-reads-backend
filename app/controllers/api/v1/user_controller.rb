@@ -1,7 +1,8 @@
 class Api::V1::UserController < ApplicationController
 
     def create 
-
+        user = User.create(user_params)
+        render json: UserSerializer.new(user).serialized_json
     end
 
     def show 
@@ -14,6 +15,6 @@ class Api::V1::UserController < ApplicationController
     private
 
     def user_params
-        
+        params.require(:user).permit(:username, :password)
     end
 end
