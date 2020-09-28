@@ -10,7 +10,63 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_27_223323) do
+ActiveRecord::Schema.define(version: 2020_09_28_192253) do
+
+  create_table "authors", force: :cascade do |t|
+    t.string "firstname"
+    t.string "lastname"
+    t.string "img"
+    t.string "bio"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "book_sub_genres", force: :cascade do |t|
+    t.integer "book_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "sub_genre_id"
+    t.index ["book_id"], name: "index_book_sub_genres_on_book_id"
+  end
+
+  create_table "book_themes", force: :cascade do |t|
+    t.integer "book_id", null: false
+    t.integer "theme_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_book_themes_on_book_id"
+    t.index ["theme_id"], name: "index_book_themes_on_theme_id"
+  end
+
+  create_table "books", force: :cascade do |t|
+    t.string "title"
+    t.integer "year_published"
+    t.integer "author_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "cover_img"
+    t.index ["author_id"], name: "index_books_on_author_id"
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "sub_genres", force: :cascade do |t|
+    t.string "name"
+    t.integer "genre_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["genre_id"], name: "index_sub_genres_on_genre_id"
+  end
+
+  create_table "themes", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
@@ -19,4 +75,9 @@ ActiveRecord::Schema.define(version: 2020_09_27_223323) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "book_sub_genres", "books"
+  add_foreign_key "book_themes", "books"
+  add_foreign_key "book_themes", "themes"
+  add_foreign_key "books", "authors"
+  add_foreign_key "sub_genres", "genres"
 end
