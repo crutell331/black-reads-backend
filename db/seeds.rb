@@ -1,7 +1,7 @@
-# Author.delete_all
-# Book.delete_all
-# SubGenre.delete_all
-# BookSubGenre.delete_all
+Author.delete_all
+Book.delete_all
+SubGenre.delete_all
+BookSubGenre.delete_all
 
 
 a1=Author.create!(firstname:"Maya", lastname:"Angelou", img:"https://images.gr-assets.com/authors/1379017377p8/3503.jpg", bio:"") #non fiction
@@ -19,10 +19,10 @@ b4=Book.create!(title: "I Know Why the Caged Bird Sings", year_published:1993 , 
 b5=Book.create!(title: "The New Jim Crow: Mass Incarceration in the Age of Colorblindness", year_published:2010 , cover_img:"https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1328751532l/6792458.jpg", author: a2)
 b6=Book.create!(title: "Becoming", year_published:2018 , cover_img:"https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1528206996l/38746485.jpg", author:a3 )
 
-sg1=SubGenre.create(name: "Biographies & Memoirs")
-sg2=SubGenre.create(name: "Race Studies")
-sg3=SubGenre.create(name: "Fantasy")
-sg4=SubGenre.create(name: "Historical Fiction")
+sg1=SubGenre.create(name: "Biographies & Memoirs", img: "https://www.scholastic.com/content/dam/teachers/articles/migrated-promotional-images/130201_rt_black_history2.jpg")
+sg2=SubGenre.create(name: "Race Studies", img: "https://photos.prnewswire.com/prn/20140911/145593")
+sg3=SubGenre.create(name: "Fantasy", img: "https://i.pinimg.com/474x/3d/12/d2/3d12d222f1d2372cd7c915a8ca452968.jpg")
+sg4=SubGenre.create(name: "Historical Fiction", img:"https://media.npr.org/assets/img/2019/11/27/childrenofvirtueandvengeance-e9a2ed7478bfd08732d132b06d3535324e2fdf65.jpg")
 
 BookSubGenre.create(book:b1 , sub_genre: sg3)
 BookSubGenre.create(book:b2 , sub_genre: sg4 )
