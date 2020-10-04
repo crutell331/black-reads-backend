@@ -5,4 +5,8 @@ class Book < ApplicationRecord
   has_many :genres, through: :sub_genres
   has_many :book_themes, dependent: :destroy
   has_many :themes, through: :book_themes
+
+  def author_name
+    self.author.name
+  end
 end

@@ -1,4 +1,4 @@
 class SubGenreSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :name, :img, :books, :authors
+  attributes :name, :img, :authors, :books_with_authors
 end
