@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_30_230216) do
+ActiveRecord::Schema.define(version: 2020_10_07_023215) do
 
   create_table "authors", force: :cascade do |t|
     t.string "img"
@@ -54,6 +54,15 @@ ActiveRecord::Schema.define(version: 2020_09_30_230216) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "library_books", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "book_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_library_books_on_book_id"
+    t.index ["user_id"], name: "index_library_books_on_user_id"
+  end
+
   create_table "sub_genre_categories", force: :cascade do |t|
     t.integer "sub_genre_id", null: false
     t.integer "genre_id", null: false
@@ -87,6 +96,8 @@ ActiveRecord::Schema.define(version: 2020_09_30_230216) do
   add_foreign_key "book_themes", "books"
   add_foreign_key "book_themes", "themes"
   add_foreign_key "books", "authors"
+  add_foreign_key "library_books", "books"
+  add_foreign_key "library_books", "users"
   add_foreign_key "sub_genre_categories", "genres"
   add_foreign_key "sub_genre_categories", "sub_genres"
 end

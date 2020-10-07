@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       get "/categories", to: "sub_genre#index"
       get "/books", to: "book#index"
       get "/authors", to: "author#index"
+      post "/users/:username/add_library", to: "user#add_library_book"
     end
   end
 end
